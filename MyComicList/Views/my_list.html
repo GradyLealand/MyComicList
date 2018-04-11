@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MyComicList</title>
+        <title>My List</title>
         <meta name="description" content="Browse and track comic issues">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,43 +28,31 @@
                     <!--TODO fix navigation-->
                     <a class="navbar-brand homeRedirect" href="#">MyComicList</a>
                 </div>
-                <!--TODO fix form-->
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control searchBox" placeholder="Search">
-                    </div>
-                    <h1 id="searchSubmit">Submit</h1>
-                </form>
 
                 <div class="nav navbar-nav navbar-right">
                     <!--TODO add currently logged in user-->
                     <p class="navbar-text">USERNAME</p>
                     <ul class="nav navbar-nav">
                         <!--TODO add MODALS for log in log out-->
-                        <li id="listRedirect"><a href="#">MY LIST</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li class="homeRedirect"><a href="#">HOME</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <!--JUMOBOTRON-->
-        <div class="jumbotron text-center">
-            <h1>MyComicList</h1>
-            <p>Browse and track over a half million issues!</p>
-        </div>
-
         <!--MAIN CONTAINER-->
         <div class="container">
 
-            <table id="issuesTable" class="display">
+            <h1>My List</h1>
+
+            <table id="myListTable" class="display">
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Year</th>
-                        <th>Publisher</th>
-                        <th>Add to List</th>
+                        <th>Read</th>
+                        <th>Favorite</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
             </table>
