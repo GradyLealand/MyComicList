@@ -97,9 +97,24 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.jumbotron
+{
+    color: #1f7925 !important;
+    border-top: 3px solid #333333;
+    border-bottom: 3px solid #333333;
+}
 
+.footer
+{
+    background-color: #1f7925 !important;
+    margin-top: 20px;
+    padding-top: 10px;
+}
 
-
+.footerText
+{
+    font-weight: bold;
+}
 
 
 
