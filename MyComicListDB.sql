@@ -11,7 +11,7 @@ CREATE TABLE Volume(
 	volume_comicVineId int NOT NULL,
 	volume_name varchar(255) NOT NULL,
 	PRIMARY KEY (volume_id)
-)
+);
 
 CREATE TABLE entry(
 	entry_user_id int NOT NULL,
@@ -19,4 +19,4 @@ CREATE TABLE entry(
 	entry_status int NOT NULL,
 	FOREIGN KEY (entry_user_id) REFERENCES User(user_id),
 	FOREIGN KEY (entry_volume_id) REFERENCES Volume(volume_id)
-)
+);
