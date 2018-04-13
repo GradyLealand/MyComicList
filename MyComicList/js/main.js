@@ -72,9 +72,24 @@ $('#issuesTable').on('click', '.titleClick', function()
 
     console.log(id);
 
-//TODO make another ajax call for https://comicvine.gamespot.com/api/volume/4050-[ID GOES HERE]/?api_key=3c9b6835ca751c6ecab4484f83014979472a4565
-
+    $.ajax({
+        type: 'GET',
+        url: "https://comicvine.gamespot.com/api/volume/4050-" + id + "/?api_key=3c9b6835ca751c6ecab4484f83014979472a4565&format=jsonp&json_callback=handleTitleClick",
+        dataType: 'jsonp',
+        contentType: 'application/json',
+        success: function (data)
+        {
+           handleTitleClick(data);
+        }
+    });
 });
+
+function handleTitleClick(data)
+{
+    //TODO here is where we wanna drill into the JSON
+    //TODO will populate "selected" div
+    console.log(data);
+}
 
 $("#modalRegisterBtn").click(function () {
     //validate fields
