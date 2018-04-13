@@ -2,56 +2,6 @@
 
 $(document).ready(function()
 {
-    //-----DATATABLE INITIALIZATION-----//
-
-    //TODO commented out because they were giving errors in their current state - no data being retrieved yet
-
-    //establish the issues table (index.html)
-    // $('#issuesTable').DataTable(
-    //     {
-    //         ajax: {
-    //             url: '',
-    //             type: 'GET',
-    //             dataSrc: '',
-    //             dataType: 'json'
-    //         },
-    //         "initComplete": function()
-    //         {
-    //             // //enable the submit button on a successful load of the datatable
-    //         },
-    //
-    //         "columns" : [
-    //             {"data": "id", "visible": false},
-    //             {"data": "title", "width": "20%"},
-    //             {"data": "year", "width": "50%"},
-    //             {"data": "publisher", "width": "20%"},
-    //             {"defaultContent" : "<button class='addBtn'>Add</button>", "width": "5%"}
-    //         ]
-    //     });
-    //
-    // //establish the personalized list table (my_list.html)
-    // $('#myListTable').DataTable(
-    //     {
-    //         ajax: {
-    //             url: '',
-    //             type: 'GET',
-    //             dataSrc: '',
-    //             dataType: 'json'
-    //         },
-    //         "initComplete": function()
-    //         {
-    //             // //enable the submit button on a successful load of the datatable
-    //         },
-    //
-    //         "columns" : [
-    //             {"data": "id", "visible": false},
-    //             {"data": "title", "width": "20%"},
-    //             {"defaultContent" : "<input class='checkRead' type='checkbox'>", "width": "10%"},
-    //             {"defaultContent" : "<input class='checkFav' type='checkbox'>", "width": "10%"},
-    //             {"defaultContent" : "<button class='removeBtn'>Remove</button>", "width": "10%"}
-    //         ]
-    //     });
-
     //-----REDIRECTS-----//
     $('.homeRedirect').click(function()
     {
@@ -85,8 +35,6 @@ $(document).ready(function()
     });
 });
 
-//-----DATATABLE INITIALIZATION-----//
-
 $("#modalRegisterBtn").click(function () {
     //validate fields
     var valid = validateReg();
@@ -106,6 +54,7 @@ $("#modalRegisterBtn").click(function () {
 
 });
 
+//-----DATATABLE INITIALIZATION-----//
 function handleCallback(data)
 {
     //destroy old table if it exists
