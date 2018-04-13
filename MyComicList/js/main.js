@@ -62,13 +62,15 @@ function handleCallback(data)
 
     var ajaxResults = data.results;
 
+    console.log(ajaxResults);
+
     //fill columns with results
     $('#issuesTable').DataTable(
         {
             "data": ajaxResults,
             "columns": [
-                // {"data": "id", "visible": false},
-                {"data": "name", "width": "30%"},
+                {"data": "id", "visible": false},
+                {"data": "name", "width": "30%", "class": "titleClick"},
                 {"data": "start_year", "width": "20%"},
                 {"data": "count_of_issues", "width" : "20%"},
                 {"data": "publisher.name", "width": "20%"},
@@ -76,6 +78,12 @@ function handleCallback(data)
             ]
         });
 }
+
+//-----HANDLE TITLE CLICK-----//
+$('#issuesTable tbody').on( 'click', '.titleClick', function()
+{
+//TODO make another ajax call for https://comicvine.gamespot.com/api/volume/4050-[ID GOES HERE]/?api_key=3c9b6835ca751c6ecab4484f83014979472a4565
+});
 
 function navLoggedIn()
 {
