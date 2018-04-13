@@ -31,7 +31,7 @@
 
                 <div class="nav navbar-nav navbar-right">
                     <!--TODO add currently logged in user-->
-                    <p class="navbar-text">USERNAME</p>
+                    <p class="navbar-text" style="display: none" id="userNameDisplay"></p>
                     <ul class="nav navbar-nav">
                         <!--TODO add MODALS for log in log out-->
                         <li class="homeRedirect"><a href="#">HOME</a></li>
@@ -75,5 +75,19 @@
         <script src="../js/main.js"></script>
         <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="../js/jquery.session.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#loginBtn").click(function(){
+                    $("#loginModal").modal();
+                });
+                if($.session.get("userName") != null && $.session.get("userName") != "")
+                {
+                    $("#userNameDisplay").text($.session.get("userName")).show();
+                    $("#listRedirect").show();
+                }
+            });
+
+        </script>
     </body>
 </html>

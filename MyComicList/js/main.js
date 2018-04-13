@@ -98,3 +98,21 @@ function handleCallback(data)
 {
     console.log(data);
 }
+
+function navLoggedIn()
+{
+    $("#userNameDisplay").text($.session.get("userName")).show();
+    $("#listRedirect").show();
+    $("#loginBtn").hide();
+    $("#logoutBtn").show();
+    $("#signUpBtn").hide();
+}
+
+function navLoggedOut()
+{
+    $("#userNameDisplay").text($.session.get("userName")).hide();
+    $("#listRedirect").hide();
+    $("#loginBtn").show();
+    $("#logoutBtn").hide();
+    $("#signUpBtn").show();
+}
