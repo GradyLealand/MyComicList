@@ -35,25 +35,6 @@ $(document).ready(function()
     });
 });
 
-$("#modalRegisterBtn").click(function () {
-    //validate fields
-    var valid = validateReg();
-
-    if(valid === true)
-    {
-        //if registration valid
-        $.session.set("userName", $("#registerUserName").val());
-
-        $('#myModal').modal('hide');
-        //set user related nav bar section
-        navLoggedIn();
-    }
-    $("#registerUserName").val("");
-    $("#registerPassword").val("");
-    $("#registerConfirmPassword").val("");
-
-});
-
 //-----DATATABLE INITIALIZATION-----//
 function handleCallback(data)
 {
@@ -76,6 +57,25 @@ function handleCallback(data)
             ]
         });
 }
+
+$("#modalRegisterBtn").click(function () {
+    //validate fields
+    var valid = validateReg();
+
+    if(valid === true)
+    {
+        //if registration valid
+        $.session.set("userName", $("#registerUserName").val());
+
+        $('#myModal').modal('hide');
+        //set user related nav bar section
+        navLoggedIn();
+    }
+    $("#registerUserName").val("");
+    $("#registerPassword").val("");
+    $("#registerConfirmPassword").val("");
+
+});
 
 function navLoggedIn()
 {
