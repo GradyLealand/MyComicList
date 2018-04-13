@@ -94,6 +94,25 @@ $(document).ready(function()
     });
 });
 
+$("#modalRegisterBtn").click(function () {
+    //validate fields
+    var valid = validateReg();
+
+    if(valid === true)
+    {
+        //if registration valid
+        $.session.set("userName", $("#registerUserName").val());
+
+        $('#myModal').modal('hide');
+        //set user related nav bar section
+        navLoggedIn();
+    }
+    $("#registerUserName").val("");
+    $("#registerPassword").val("");
+    $("#registerConfirmPassword").val("");
+
+});
+
 function handleCallback(data)
 {
     console.log(data);
@@ -116,3 +135,29 @@ function navLoggedOut()
     $("#logoutBtn").hide();
     $("#signUpBtn").show();
 }
+
+function validateReg()
+{
+    //username must be at least 3 characters
+    if($("#registerUserName").val().length < 3)
+    {
+        alert("username too short");
+        return false;
+    }
+
+    //password must be at least 5 characters
+    if($("#registerPassword").val().length < 5)
+    {
+        alert("Password too short too short");
+        return false;
+    }
+    if($("#registerPassword").val() !== $("#registerConfirmPassword").val())
+    {
+        alert("Passwords do not match");
+        return false
+    }
+
+    return true;
+}
+
+
