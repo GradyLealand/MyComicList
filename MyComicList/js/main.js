@@ -61,9 +61,19 @@ function handleCallback(data)
 }
 
 //-----HANDLE TITLE CLICK-----//
-$('#issuesTable tbody').on( 'click', '.titleClick', function()
+$('#issuesTable').on('click', '.titleClick', function()
 {
+    //navigate to this the row where this was clicked
+    var table = $('#issuesTable').DataTable();
+    var data = table.row($(this).parents('tr')).data();
+
+    //find the ID
+    var id = data.id;
+
+    console.log(id);
+
 //TODO make another ajax call for https://comicvine.gamespot.com/api/volume/4050-[ID GOES HERE]/?api_key=3c9b6835ca751c6ecab4484f83014979472a4565
+
 });
 
 $("#modalRegisterBtn").click(function () {
