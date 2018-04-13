@@ -35,25 +35,6 @@ $(document).ready(function()
     });
 });
 
-$("#modalRegisterBtn").click(function () {
-    //validate fields
-    var valid = validateReg();
-
-    if(valid === true)
-    {
-        //if registration valid
-        $.session.set("userName", $("#registerUserName").val());
-
-        $('#myModal').modal('hide');
-        //set user related nav bar section
-        navLoggedIn();
-    }
-    $("#registerUserName").val("");
-    $("#registerPassword").val("");
-    $("#registerConfirmPassword").val("");
-
-});
-
 //-----DATATABLE INITIALIZATION-----//
 function handleCallback(data)
 {
@@ -79,6 +60,12 @@ function handleCallback(data)
         });
 }
 
+//-----HANDLE TITLE CLICK-----//
+$('#issuesTable tbody').on( 'click', '.titleClick', function()
+{
+//TODO make another ajax call for https://comicvine.gamespot.com/api/volume/4050-[ID GOES HERE]/?api_key=3c9b6835ca751c6ecab4484f83014979472a4565
+});
+
 $("#modalRegisterBtn").click(function () {
     //validate fields
     var valid = validateReg();
@@ -96,12 +83,6 @@ $("#modalRegisterBtn").click(function () {
     $("#registerPassword").val("");
     $("#registerConfirmPassword").val("");
 
-});
-
-//-----HANDLE TITLE CLICK-----//
-$('#issuesTable tbody').on( 'click', '.titleClick', function()
-{
-//TODO make another ajax call for https://comicvine.gamespot.com/api/volume/4050-[ID GOES HERE]/?api_key=3c9b6835ca751c6ecab4484f83014979472a4565
 });
 
 function navLoggedIn()
