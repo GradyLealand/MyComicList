@@ -32,6 +32,8 @@ $(document).ready(function()
                 }
             });
         }
+        //make the details div hidden
+        $("#mainDetailDiv").hide();
     });
 });
 
@@ -82,13 +84,23 @@ $('#issuesTable').on('click', '.titleClick', function()
            handleTitleClick(data);
         }
     });
+
 });
 
 function handleTitleClick(data)
 {
-    //TODO here is where we wanna drill into the JSON
-    //TODO will populate "selected" div
-    console.log(data);
+    var details = data.results;
+    console.log(details);
+    $("#mainDetailImg").attr("src", details.image.medium_url);
+    $("#mainDetailTitle").html(details.name);
+    $("#mainDetailYear").html(details.start_year);
+    $("#mainDetailIssues").html(details.issues.length);
+    $("#mainDetailDescription").html(details.description);
+
+    //make the details div visible
+    $("#mainDetailDiv").show();
+
+
 }
 
 $("#modalRegisterBtn").click(function () {
@@ -99,6 +111,7 @@ $("#modalRegisterBtn").click(function () {
     {
         //if registration valid
         $.session.set("userName", $("#registerUserName").val());
+
 
         $('#myModal').modal('hide');
         //set user related nav bar section
