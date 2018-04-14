@@ -41,7 +41,6 @@
                     <!--TODO add currently logged in user-->
                     <p class="navbar-text" style="display: none" id="userNameDisplay"></p>
                     <ul class="nav navbar-nav">
-                        <!--TODO add MODALS for log in log out-->
                         <li id="listRedirect" style="display: none"><a href="#">MY LIST</a></li>
                         <li><a href="#" id="signUpBtn"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                         <li><a href="#" id="loginBtn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -55,6 +54,35 @@
         <div class="jumbotron text-center">
             <h1>MyComicList</h1>
             <p>Browse and track over a half million issues!</p>
+        </div>
+
+        <!--DETAIL SECTION-->
+        <div class="container" id="mainDetailDiv" style="display: none">
+            <div class="container" >
+                <div class="col-sm-5" >
+                    <img id="mainDetailImg"/>
+                </div>
+                <div class="container col-sm-7" >
+                    <div class="row">
+                        <div class="col-sm-2"><h4>Series:</h4></div>
+                        <div class="col-sm-10"><h3 id="mainDetailTitle"></h3></div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-sm-2"><h4>Year:</h4></div>
+                        <div class="col-sm-10"><p class="description" id="mainDetailYear"></p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"><h4># Issues:</h4></div>
+                        <div class="col-sm-10" ><p id="mainDetailIssues"></p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"><h4>Details:</h4></div>
+                        <div class="col-sm-10 " id="mainDetailDescription"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!--MAIN CONTAINER-->
