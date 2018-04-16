@@ -294,5 +294,25 @@ function validateName()
     }
 }
 
+//get all volumes in a users library
+function loadUserLibrary() {
+    var user_id = {"user_id" : $.session.get("userId")};
+
+    //Get user library
+    $.ajax({
+        url: serverRoute + "library",
+        type: "post",
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify(user_id),
+
+        success: function (data)
+        {
+            console.log("set: " + data);
+        }
+
+    });
+}
+
 
 
