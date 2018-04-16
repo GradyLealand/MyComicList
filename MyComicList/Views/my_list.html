@@ -33,7 +33,7 @@
                     <ul class="nav navbar-nav">
                         <li class="navbar-text" style="display: none; font-weight: bold" id="userNameDisplay"></li>
                         <li class="homeRedirect"><a href="#">HOME</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        <li><a href="#" id="listLogoutBtn"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -92,6 +92,24 @@
             </div>
         </footer>
 
+        <!--LOGOUT MODAL-->
+        <div class="modal fade" id="listLogoutModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Log Out of MyComicsList?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="listModalLogoutBtn" data-dismiss="modal">Log Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--SCRIPTS-->
         <script src="../js/vendor/modernizr-3.5.0.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -100,12 +118,25 @@
         <script src="../js/main.js"></script>
         <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="../js/jquery.session.js"></script>
         <script>
             $(document).ready(function(){
-                $("#loginBtn").click(function(){
-                    $("#loginModal").modal();
+                $("#listLogoutBtn").click(function (){ $("#listLogoutModal").modal(); });
+
+                $("#listModalLogoutBtn").click(function () {
+
+                    //verify user
+                    //if proper login set session user
+                    $.session.set("userName", "");
+                    $.session.set("userId", "");
+                    //set user related nav bar section
+                    navLoggedOut();
+
+                    window.location="index.html";
+
                 });
+
                 if($.session.get("userName") != null && $.session.get("userName") != "")
                 {
                     $("#userNameDisplay").text($.session.get("userName")).show();

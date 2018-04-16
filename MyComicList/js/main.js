@@ -102,6 +102,36 @@ function handleTitleClick(data)
     $("#mainDetailDiv").show();
 }
 
+//-----FUNCTIONS RELATED TO COMICS-----//
+
+//add a new volume
+$('#issuesTable').on( 'click', '.addBtn', function() {
+
+    //navigate to this the row where this was clicked
+    var table = $('#issuesTable').DataTable();
+    var data = table.row($(this).parents('tr')).data();
+
+    //find the ID
+    var volume_comicVineId = data.id;
+    var volume_name = data.name;
+
+    var new_volume = {"volume_comicVineId" : volume_comicVineId, "volume_name" : volume_name};
+
+    //POST to see if volume is already in DB
+    $.ajax({
+        url: serverRoute + "volumeExists",
+        type: "POST",
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify(new_volume),
+
+        success: function (data)
+        {
+            console.log(data);
+        }
+    });
+});
+
 $("#modalRegisterBtn").click(function () {
     //validate fields
     var valid = validateReg();
