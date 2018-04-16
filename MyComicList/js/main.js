@@ -1,5 +1,7 @@
 "use strict";
 
+var serverRoute = "http://localhost:8080/";
+
 $(document).ready(function()
 {
     //-----REDIRECTS-----//
@@ -84,7 +86,6 @@ $('#issuesTable').on('click', '.titleClick', function()
            handleTitleClick(data);
         }
     });
-
 });
 
 function handleTitleClick(data)
@@ -99,8 +100,6 @@ function handleTitleClick(data)
 
     //make the details div visible
     $("#mainDetailDiv").show();
-
-
 }
 
 $("#modalRegisterBtn").click(function () {
@@ -109,10 +108,33 @@ $("#modalRegisterBtn").click(function () {
 
     if(valid === true)
     {
+        console.log("Attempting to add user");
+
+        var user_name = $('#registerUserName').val();
+        var user_password = $('#registerPassword').val();
+        var user_email = $('#registerUserEmail').val();
+
+        var new_user = {"user_name" : user_name, "user_password" : user_password, "user_email" : user_email};
+
+        console.log(new_user);
+
+        //POST a new user
+        $.ajax({
+            url: serverRoute + "addUser",
+            type: "post",
+            contentType: "application/json",
+            processData: false,
+            data: JSON.stringify(new_user),
+
+            success: function (data)
+            {
+                console.log(data);
+            }
+
+        });
+
         //if registration valid
         $.session.set("userName", $("#registerUserName").val());
-
-
         $('#myModal').modal('hide');
         //set user related nav bar section
         navLoggedIn();
