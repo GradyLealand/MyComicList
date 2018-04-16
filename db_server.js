@@ -210,6 +210,31 @@ app.post('/volumeExists', function(req, res) {
     }
 });
 
+//check to see if the user exists in the database already
+app.post('/library', function(req, res) {
+    var returnString = [];
+    var user_id = req.param('user_id');
+
+    console.log("user id: " + user_id);
+
+
+    connection.query('SELECT * FROM Volume INNER JOIN entry ON entry_volume_id = volume_id WHERE entry_user_id = ?', user_id, function(err, response)
+    {
+        if(err) throw err;
+        console.log("reponse: " + JSON.stringify(response))
+        var value = JSON.stringify(response);
+        var newStr = value.substring(1, value.length-1);
+        sendResponse(newStr);
+    });
+
+    function sendResponse(response) {
+        console.log(response);
+        res.send(response);
+    }
+
+
+});
+
 //server listing on port 8080
 app.listen(8080);
 console.log("Listening on port 8080");
