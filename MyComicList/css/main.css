@@ -127,7 +127,10 @@ p{
     max-height: 100%;
 }
 
-
+.titleClick:hover
+{
+    cursor: pointer;
+}
 
 
 
