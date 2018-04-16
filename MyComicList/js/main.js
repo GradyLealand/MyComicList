@@ -116,7 +116,6 @@ function verifyUser()
     var user_password = $('#loginPassword').val();
 
     var login_user = {"user_name" : user_name, "user_password" : user_password};
-    console.log(login_user);
 
     //check for valid user
     $.ajax({
@@ -128,11 +127,13 @@ function verifyUser()
 
         success: function (data)
         {
-            console.log(data);
-            if(data)
+            console.log(data.user_id);
+            if(data !== "0")
             {
                 //if proper login set session user
                 $.session.set("userName", $("#loginUserName").val());
+                $.session.set("userId", data);
+                console.log($.session.get("userId"));
                 //set user related nav bar section
                 navLoggedIn();
             }
