@@ -204,10 +204,7 @@
 
             $("#modalLoginBtn").click(function () {
                 //verify user
-                //if proper login set session user
-                $.session.set("userName", $("#loginUserName").val());
-                //set user related nav bar section
-                navLoggedIn();
+                verifyUser();
             });
 
             $("#modalLogoutBtn").click(function () {
