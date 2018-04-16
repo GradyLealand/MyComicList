@@ -144,6 +144,7 @@ app.post('/volumeExists', function(req, res) {
     var returnString = [];
     var volume_comicVineId = req.param('volume_comicVineId');
     var volume_name = req.param('volume_name');
+    var user_id = req.param('user_id');
 
     console.log(volume_comicVineId);
 
@@ -154,8 +155,6 @@ app.post('/volumeExists', function(req, res) {
         if(err) throw err;
         setValue(JSON.stringify(response));
     });
-
-
 
     function setValue(value) {
         returnString = value;
@@ -177,6 +176,37 @@ app.post('/volumeExists', function(req, res) {
                 console.log("1 volume record inserted");
             })
         }
+
+        getVolumeIDfromDB();
+    }
+
+    //add to entry table
+    function getVolumeIDfromDB() {
+
+        var volume_id;
+
+        connection.query('SELECT volume_id FROM Volume WHERE volume_comicVineId = ?', volume_comicVineId, function (err, response) {
+
+            if (err) throw err;
+            value = JSON.stringify(response);
+            var newStr = value.substring(1, value.length-1);
+            var strippedStr = JSON.parse(newStr);
+
+            volume_id = strippedStr.volume_id;
+            addComicToLib(volume_id);
+        })
+    }
+
+    //the last step to adding to the join table
+    function addComicToLib(volume_id){
+
+        var params = [user_id, volume_id, 0]
+
+        connection.query('INSERT into entry (entry_user_id, entry_volume_id, entry_status) VALUES (?, ?, ?)', params, function (err, res)
+        {
+            if(err) throw err;
+            console.log("Insert into entry complete");
+        })
     }
 });
 
