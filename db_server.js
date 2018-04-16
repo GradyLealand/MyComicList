@@ -139,6 +139,47 @@ app.post('/userExists', function(req, res) {
 
 });
 
+//check to see if volume exists in DB
+app.post('/volumeExists', function(req, res) {
+    var returnString = [];
+    var volume_comicVineId = req.param('volume_comicVineId');
+    var volume_name = req.param('volume_name');
+
+    console.log(volume_comicVineId);
+
+    var params = [volume_comicVineId];
+
+    connection.query('SELECT * FROM Volume WHERE volume_comicVineId = ?', params, function(err, response)
+    {
+        if(err) throw err;
+        setValue(JSON.stringify(response));
+    });
+
+
+
+    function setValue(value) {
+        returnString = value;
+        console.log(returnString.length);
+        if(returnString.length > 2)
+        {
+            res.send(false);
+        }
+        else
+        {
+            //volume is not in the DB - so add it
+            res.send(true);
+
+            var params = [volume_comicVineId, volume_name];
+
+            connection.query('INSERT INTO Volume (volume_comicVineId, volume_name) VALUES (?, ?)', params, function (err, res)
+            {
+                if(err) throw err;
+                console.log("1 volume record inserted");
+            })
+        }
+    }
+});
+
 //server listing on port 8080
 app.listen(8080);
 console.log("Listening on port 8080");
