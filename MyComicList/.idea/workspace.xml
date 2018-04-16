@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2754faa-ceed-4bcd-9fa8-4a8f49e89a0c" name="Default" comment="">
+    <list default="true" id="b2754faa-ceed-4bcd-9fa8-4a8f49e89a0c" name="Default" comment="Fixed logout - working on comic db calls">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Views/index.html" afterPath="$PROJECT_DIR$/Views/index.html" />
-      <change beforePath="$PROJECT_DIR$/Views/my_list.html" afterPath="$PROJECT_DIR$/Views/my_list.html" />
       <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -53,8 +51,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="115" column="32" lean-forward="true" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
+            <state relative-caret-position="85">
+              <caret line="111" column="55" lean-forward="true" selection-start-line="111" selection-start-column="55" selection-end-line="111" selection-end-column="55" />
               <folding>
                 <element signature="n#!!block;n#handleCallback#0" expanded="false" />
                 <element signature="e#1980#2570#0" expanded="false" />
@@ -62,8 +60,17 @@
                 <element signature="n#!!block;n#navLoggedIn#0" expanded="false" />
                 <element signature="n#!!block;n#navLoggedOut#0" expanded="false" />
                 <element signature="n#!!block;n#validateReg#0" expanded="false" />
-                <marker date="1523913871783" expanded="true" signature="1818:1829" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db_server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../MyComicsListServer/db_server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="197" column="8" lean-forward="false" selection-start-line="197" selection-start-column="8" selection-end-line="197" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -97,10 +104,10 @@
         <option value="$PROJECT_DIR$/Views/log_in.html" />
         <option value="$PROJECT_DIR$/js/jquery.session.js" />
         <option value="$PROJECT_DIR$/css/main.css" />
-        <option value="$PROJECT_DIR$/../../MyComicsListServer/db_server.js" />
         <option value="$PROJECT_DIR$/Views/index.html" />
         <option value="$PROJECT_DIR$/Views/my_list.html" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/../../MyComicsListServer/db_server.js" />
       </list>
     </option>
   </component>
@@ -196,7 +203,7 @@
       <workItem from="1523726859379" duration="7308000" />
       <workItem from="1523834203444" duration="71000" />
       <workItem from="1523882849741" duration="18388000" />
-      <workItem from="1523912958997" duration="913000" />
+      <workItem from="1523912958997" duration="3179000" />
     </task>
     <task id="LOCAL-00001" summary="added login modal and sessions plugin">
       <created>1523633271483</created>
@@ -254,11 +261,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523912678390</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed logout - working on comic db calls">
+      <created>1523913902738</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1523913902738</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49918000" />
+    <option name="totallyTimeSpent" value="52184000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="436" y="13" width="1596" height="688" extended-state="6" />
@@ -269,7 +283,7 @@
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923833" sideWeight="0.5020173" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2800983" sideWeight="0.4979827" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27906978" sideWeight="0.4979827" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3845209" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -298,7 +312,8 @@
     <MESSAGE value="did a lot of stuff" />
     <MESSAGE value="index stuff" />
     <MESSAGE value="db call now returns user id" />
-    <option name="LAST_COMMIT_MESSAGE" value="db call now returns user id" />
+    <MESSAGE value="Fixed logout - working on comic db calls" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed logout - working on comic db calls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -345,7 +360,6 @@
             <element signature="n#!!block;n#navLoggedIn#0" expanded="false" />
             <element signature="n#!!block;n#navLoggedOut#0" expanded="false" />
             <element signature="n#!!block;n#validateReg#0" expanded="false" />
-            <marker date="1523913871783" expanded="true" signature="1818:1829" ph="..." />
           </folding>
         </state>
       </provider>
@@ -412,7 +426,6 @@
             <element signature="n#!!block;n#navLoggedIn#0" expanded="false" />
             <element signature="n#!!block;n#navLoggedOut#0" expanded="false" />
             <element signature="n#!!block;n#validateReg#0" expanded="false" />
-            <marker date="1523913871783" expanded="true" signature="1818:1829" ph="..." />
           </folding>
         </state>
       </provider>
@@ -463,7 +476,6 @@
             <element signature="n#!!block;n#navLoggedIn#0" expanded="false" />
             <element signature="n#!!block;n#navLoggedOut#0" expanded="false" />
             <element signature="n#!!block;n#validateReg#0" expanded="false" />
-            <marker date="1523913871783" expanded="true" signature="1818:1829" ph="..." />
           </folding>
         </state>
       </provider>
@@ -495,7 +507,6 @@
             <element signature="n#!!block;n#navLoggedIn#0" expanded="false" />
             <element signature="n#!!block;n#navLoggedOut#0" expanded="false" />
             <element signature="n#!!block;n#validateReg#0" expanded="false" />
-            <marker date="1523913871783" expanded="true" signature="1818:1829" ph="..." />
           </folding>
         </state>
       </provider>
@@ -513,14 +524,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="96" column="32" lean-forward="true" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../MyComicsListServer/db_server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="65" column="7" lean-forward="true" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -560,10 +563,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../MyComicsListServer/db_server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="197" column="8" lean-forward="false" selection-start-line="197" selection-start-column="8" selection-end-line="197" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="115" column="32" lean-forward="true" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
+        <state relative-caret-position="85">
+          <caret line="111" column="55" lean-forward="true" selection-start-line="111" selection-start-column="55" selection-end-line="111" selection-end-column="55" />
           <folding>
             <element signature="n#!!block;n#handleCallback#0" expanded="false" />
             <element signature="e#1980#2570#0" expanded="false" />
@@ -571,7 +582,6 @@
             <element signature="n#!!block;n#navLoggedIn#0" expanded="false" />
             <element signature="n#!!block;n#navLoggedOut#0" expanded="false" />
             <element signature="n#!!block;n#validateReg#0" expanded="false" />
-            <marker date="1523913871783" expanded="true" signature="1818:1829" ph="..." />
           </folding>
         </state>
       </provider>

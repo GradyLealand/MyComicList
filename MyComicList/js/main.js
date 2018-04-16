@@ -114,8 +114,9 @@ $('#issuesTable').on( 'click', '.addBtn', function() {
     //find the ID
     var volume_comicVineId = data.id;
     var volume_name = data.name;
+    var user_id = $.session.get('user_id');
 
-    var new_volume = {"volume_comicVineId" : volume_comicVineId, "volume_name" : volume_name};
+    var new_volume = {"volume_comicVineId" : volume_comicVineId, "volume_name" : volume_name, "user_id" : user_id};
 
     //POST to see if volume is already in DB
     $.ajax({
