@@ -106,45 +106,45 @@ $("#modalRegisterBtn").click(function () {
     //validate fields
     var valid = validateReg();
 
-    if(valid === true)
-    {
-        console.log("Attempting to add user");
-
-        var user_name = $('#registerUserName').val();
-        var user_password = $('#registerPassword').val();
-        var user_email = $('#registerUserEmail').val();
-
-        var new_user = {"user_name" : user_name, "user_password" : user_password, "user_email" : user_email};
-
-        console.log(new_user);
-
-        //POST a new user
-        $.ajax({
-            url: serverRoute + "addUser",
-            type: "post",
-            contentType: "application/json",
-            processData: false,
-            data: JSON.stringify(new_user),
-
-            success: function (data)
-            {
-                console.log(data);
-            }
-
-        });
-
-        //if registration valid
-        $.session.set("userName", $("#registerUserName").val());
-        $('#myModal').modal('hide');
-        //set user related nav bar section
-        navLoggedIn();
-    }
-    $("#registerUserName").val("");
-    $("#registerPassword").val("");
-    $("#registerConfirmPassword").val("");
-
+    validateName();
 });
 
+//confirm login credentials
+function verifyUser()
+{
+    var user_name = $('#loginUserName').val();
+    var user_password = $('#loginPassword').val();
+
+    var login_user = {"user_name" : user_name, "user_password" : user_password};
+    console.log(login_user);
+
+    //check for valid user
+    $.ajax({
+        url: serverRoute + "login",
+        type: "post",
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify(login_user),
+
+        success: function (data)
+        {
+            console.log(data);
+            if(data)
+            {
+                //if proper login set session user
+                $.session.set("userName", $("#loginUserName").val());
+                //set user related nav bar section
+                navLoggedIn();
+            }
+            else
+            {
+                alert("Invalid user name or password!")
+            }
+        }
+    });
+}
+
+//set navbar to logged in mde
 function navLoggedIn()
 {
     $("#userNameDisplay").text($.session.get("userName")).show();
@@ -154,6 +154,7 @@ function navLoggedIn()
     $("#signUpBtn").hide();
 }
 
+//set nav bar to logged out mode
 function navLoggedOut()
 {
     $("#userNameDisplay").text($.session.get("userName")).hide();
@@ -163,6 +164,7 @@ function navLoggedOut()
     $("#signUpBtn").show();
 }
 
+//validate log in feilds
 function validateReg()
 {
     //username must be at least 3 characters
@@ -186,5 +188,79 @@ function validateReg()
 
     return true;
 }
+
+//check to see if the user name already exists
+function validateName()
+{
+    var user_name = $('#registerUserName').val();
+
+    var new_user = {"user_name" : user_name};
+
+    console.log(new_user);
+
+    //POST a new user
+    $.ajax({
+        url: serverRoute + "userExists",
+        type: "post",
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify(new_user),
+
+        success: function (data)
+        {
+            console.log("set: " + data);
+            checkName(data);
+        }
+
+    });
+
+    function checkName(data)
+    {
+        if(!data)
+        {
+            alert("User name taken!");
+        }
+        else
+        {
+            console.log("Attempting to add user");
+
+            var user_name = $('#registerUserName').val();
+            var user_password = $('#registerPassword').val();
+            var user_email = $('#registerUserEmail').val();
+
+            var new_user = {"user_name" : user_name, "user_password" : user_password, "user_email" : user_email};
+
+            console.log(new_user);
+
+            //POST a new user
+            $.ajax({
+                url: serverRoute + "addUser",
+                type: "post",
+                contentType: "application/json",
+                processData: false,
+                data: JSON.stringify(new_user),
+
+                success: function (data)
+                {
+                    console.log(data);
+                }
+
+            });
+
+            //if registration valid
+            $.session.set("userName", $("#registerUserName").val());
+            $('#myModal').modal('hide');
+            //set user related nav bar section
+            navLoggedIn();
+        }
+
+        //reset fields
+        $("#registerUserName").val("");
+        $("#registerPassword").val("");
+        $("#registerConfirmPassword").val("");
+        $("#registerUserEmail").val("");
+    }
+}
+
 
 
