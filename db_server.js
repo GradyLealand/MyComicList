@@ -68,12 +68,12 @@ app.post('/addUser', function(req, res) {
     res.send('hello');
 });
 
-//check to see if the useres
+//check to see if the users
 app.post('/login', function(req, res) {
-    var returnString = [];
+    var returnString;
     var user_name = req.param('user_name');
     var user_password = req.param('user_password');
-	
+
 	console.log(user_name);
 	console.log(user_password);
 
@@ -82,18 +82,27 @@ app.post('/login', function(req, res) {
     connection.query('SELECT * FROM User WHERE user_name = ? AND user_password = ?', params, function(err, response)
     {
         if(err) throw err;
+        console.log(response);
         setValue(JSON.stringify(response));
     });
 
     function setValue(value) {
         returnString = value;
+
+
         if(returnString.length > 2)
         {
-            res.send(true);
+            //get the user id
+            var newStr = value.substring(1, value .length-1);
+            console.log(newStr.user_id);
+            var jstring = JSON.parse(newStr);
+
+            //return the user id
+            res.send(jstring.user_id.toString());
         }
         else
         {
-            res.send(false);
+            res.send("0");
         }
     }
 
