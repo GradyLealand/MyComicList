@@ -68,6 +68,68 @@ app.post('/addUser', function(req, res) {
     res.send('hello');
 });
 
+//check to see if the useres
+app.post('/login', function(req, res) {
+    var returnString = [];
+    var user_name = req.param('user_name');
+    var user_password = req.param('user_password');
+	
+	console.log(user_name);
+	console.log(user_password);
+
+	var params = [user_name, user_password];
+
+    connection.query('SELECT * FROM User WHERE user_name = ? AND user_password = ?', params, function(err, response)
+    {
+        if(err) throw err;
+        setValue(JSON.stringify(response));
+    });
+
+    function setValue(value) {
+        returnString = value;
+        if(returnString.length > 2)
+        {
+            res.send(true);
+        }
+        else
+        {
+            res.send(false);
+        }
+    }
+
+});
+
+//check to see if the user exists in the database already
+app.post('/userExists', function(req, res) {
+    var returnString = [];
+    var user_name = req.param('user_name');
+
+    console.log(user_name);
+
+    var params = [user_name];
+
+    connection.query('SELECT * FROM User WHERE user_name = ? ', params, function(err, response)
+    {
+        if(err) throw err;
+        setValue(JSON.stringify(response));
+    });
+
+
+    function setValue(value) {
+        returnString = value;
+        console.log(returnString.length);
+        if(returnString.length > 2)
+        {
+            res.send(false);
+        }
+        else
+        {
+            res.send(true);
+        }
+    }
+
+});
+
 //server listing on port 8080
 app.listen(8080);
 console.log("Listening on port 8080");
