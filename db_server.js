@@ -39,8 +39,8 @@ connection.connect(function(err) {
     }
 });
 
-//for encoding/decoding json??
-app.use(bodyParser.urlencoded({ extended: false }))
+//for decoding JSON
+app.use(bodyParser.json());
 
 //landing page for server (visit localhost:8080 in browser to see this)
 app.get('/', function(req, res) {
@@ -48,16 +48,22 @@ app.get('/', function(req, res) {
 });
 
 //POST a new user
-app.post('/user', function(req, res) {
-    // var username = 'devin';
-    // var password = 'password';
-    // var email = 'w0302119@nscc.ca';
-    //
-    // connection.query("INSERT INTO User (user_name, user_password, user_email) VALUES (?, ?, ?)", username.toString(), password.toString(), email.toString(), function(err, result)
-    // {
-    //     if(err) throw err;
-    //     console.log("1 record inserted");
-    // });
+app.post('/addUser', function(req, res) {
+    var username = req.param('user_name');
+    var password = req.param('user_password');
+    var email = req.param('user_email');
+	
+	console.log(username);
+	console.log(password);
+	console.log(email);
+
+	var params = [username, password, email];
+
+	connection.query('INSERT INTO User (user_name, user_password, user_email) VALUES (?, ?, ?)', params, function(err, res)
+    {
+        if(err) throw err;
+        console.log("1 record inserted");
+    });
 
     res.send('hello');
 });
