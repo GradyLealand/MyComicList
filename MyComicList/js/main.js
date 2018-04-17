@@ -47,7 +47,10 @@ function handleCallback(data)
 
     var ajaxResults = data.results;
 
-    console.log(ajaxResults);
+    if (ajaxResults != null)
+    {
+        $('#issuesTable').show();
+    }
 
     //fill columns with results
     $('#issuesTable').DataTable(
@@ -67,6 +70,12 @@ function handleCallback(data)
 //-----HANDLE TITLE CLICK-----//
 $('#issuesTable').on('click', '.titleClick', function()
 {
+    //hide the jumbrotron
+    $('.jumbotron').hide();
+
+    //display loader
+    $('#batmanDiv').show();
+
     //navigate to this the row where this was clicked
     var table = $('#issuesTable').DataTable();
     var data = table.row($(this).parents('tr')).data();
@@ -98,6 +107,9 @@ function handleTitleClick(data)
     $("#mainDetailIssues").html(details.issues.length);
     $("#mainDetailDescription").html(details.description);
 
+    //hide loader
+    $('#batmanDiv').hide();
+
     //make the details div visible
     $("#mainDetailDiv").show();
 }
@@ -126,9 +138,9 @@ $('#issuesTable').on( 'click', '.addBtn', function() {
         processData: false,
         data: JSON.stringify(new_volume),
 
-        success: function (data)
+        success: function ()
         {
-            console.log(data);
+            alert("Successfully added this volume to your list!");
         }
     });
 });
@@ -298,21 +310,66 @@ function validateName()
 function loadUserLibrary() {
     var user_id = {"user_id" : $.session.get("userId")};
 
+    $('#batmanLibDiv').show();
+
+    setTimeout(function() {
     //Get user library
     $.ajax({
         url: serverRoute + "library",
         type: "post",
         contentType: "application/json",
-        processData: false,
+        processData: true,
         data: JSON.stringify(user_id),
 
         success: function (data)
         {
-            console.log("set: " + data);
+            $('#myListTable').DataTable(
+                {
+                    "data": data,
+                    "columns": [
+                        {"data": "entry_user_id", "visible": false},
+                        {"data": "entry_volume_id", "visible": false},
+                        {"data": "volume_comicVineId", "width": "10%"},
+                        {"data": "volume_name", "width": "60%"},
+                        {"data": "entry_status", "width": "20%"},
+                        {"defaultContent": "<button class='delBtn' style='width: 100%'>Remove</button>", "width": "10%"}
+                    ]
+                });
         }
 
-    });
+    }); $('#batmanLibDiv').hide();}, 1500);
 }
 
+//onclick for delete from list
+$('#myListTable').on( 'click', '.delBtn', function() {
 
+    //navigate to this the row where this was clicked
+    var table = $('#myListTable').DataTable();
+    var data = table.row($(this).parents('tr')).data();
 
+    //find the ID
+    var entry_user_id = data.entry_user_id;
+    var entry_volume_id = data.entry_volume_id;
+
+    var del_entry = {"entry_user_id" : entry_user_id, "entry_volume_id" : entry_volume_id};
+
+    //POST to remove volume from entry
+    $.ajax({
+        url: serverRoute + "delete",
+        type: "POST",
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify(del_entry),
+
+        success: function ()
+        {
+            alert("Successfully removed from your list!");
+            reloadTable();
+        }
+    });
+});
+
+function reloadTable()
+{
+    loadUserLibrary();
+}

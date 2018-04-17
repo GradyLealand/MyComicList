@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/normalize.css">
         <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -69,14 +70,56 @@
         <!--MAIN CONTAINER-->
         <div class="container">
 
+            <br>
+
+            <div id="batmanLibDiv" class="batman" style="display: none">
+                <div class="bat-cave">
+                    <div class="left-wing-connector">
+                        <div></div> <!-- 1 -->
+                        <div></div> <!-- 2 -->
+                        <div></div> <!-- 3 -->
+                    </div>
+                    <div class="left-wing">
+                        <div></div> <!-- 1 -->
+                        <div></div> <!-- 2 -->
+                        <div></div> <!-- 3 -->
+                        <div class="left-smoother">
+                        </div>
+                    </div>
+                    <div class="bat-body">
+                        <div></div> <!-- 1 -->
+                        <div></div> <!-- 2 -->
+                        <div></div> <!-- 3 -->
+                        <div></div> <!-- 4 -->
+                        <div></div> <!-- 5 -->
+                    </div>
+                    <div class="right-wing-connector">
+                        <div></div> <!-- 1 -->
+                        <div></div> <!-- 2 -->
+                        <div></div> <!-- 3 -->
+                    </div>
+                    <div class="right-wing">
+                        <div></div> <!-- 1 -->
+                        <div></div> <!-- 2 -->
+                        <div></div> <!-- 3 -->
+                        <div class="right-smoother">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <h1>My List</h1>
+
+            <hr>
 
             <table id="myListTable" class="display">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Read</th>
-                        <th>Favorite</th>
+                        <th>uID</th>
+                        <th>vID</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
                         <th>Remove</th>
                     </tr>
                 </thead>
