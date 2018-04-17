@@ -423,5 +423,7 @@ $('#myListTable').on('click', '.checkBoxRead', function() {
 //reload a datatable
 function reloadTable()
 {
+    var table = $('#myListTable').DataTable();
+    table.destroy();
     loadUserLibrary();
 }
