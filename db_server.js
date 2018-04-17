@@ -222,9 +222,7 @@ app.post('/library', function(req, res) {
     {
         if(err) throw err;
         console.log("reponse: " + JSON.stringify(response))
-        var value = JSON.stringify(response);
-        var newStr = value.substring(1, value.length-1);
-        sendResponse(newStr);
+        sendResponse(response);
     });
 
     function sendResponse(response) {
@@ -232,8 +230,36 @@ app.post('/library', function(req, res) {
         res.send(response);
     }
 
-
 });
+
+//delete an entry
+app.post('/delete', function(req, res){
+    var entry_user_id = req.param('entry_user_id');
+    var entry_volume_id = req.param('entry_volume_id');
+
+    var params = [entry_user_id, entry_volume_id];
+
+    connection.query('DELETE FROM entry WHERE entry_user_id = ? AND entry_volume_id = ?', params, function(err, response)
+    {
+        if(err) throw err;
+        res.send(200);
+    });
+})
+
+//update an entry status
+app.post('/updateStatus', function(req, res){
+    var entry_user_id = req.param('entry_user_id');
+    var entry_volume_id = req.param('entry_volume_id');
+    var entry_status = req.param('entry_status');
+
+    var params = [ entry_status, entry_user_id, entry_volume_id];
+
+    connection.query('UPDATE entry SET entry_status = ? WHERE entry_user_id = ? AND entry_volume_id = ?', params, function(err, response)
+    {
+        if(err) throw err;
+        res.send(200);
+    });
+})
 
 //server listing on port 8080
 app.listen(8080);
