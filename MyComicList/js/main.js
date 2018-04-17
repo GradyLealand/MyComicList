@@ -56,6 +56,7 @@ function handleCallback(data)
     $('#issuesTable').DataTable(
         {
             "data": ajaxResults,
+            retrieve: true,
             "columns": [
                 {"data": "id", "visible": false},
                 {"data": "name", "width": "30%", "class": "titleClick"},
@@ -188,7 +189,7 @@ function verifyUser()
     });
 }
 
-//set navbar to logged in mde
+//set navbar to logged in mode
 function navLoggedIn()
 {
     $("#userNameDisplay").text($.session.get("userName")).show();
@@ -326,12 +327,22 @@ function loadUserLibrary() {
             $('#myListTable').DataTable(
                 {
                     "data": data,
+                    retrieve: true,
                     "columns": [
                         {"data": "entry_user_id", "visible": false},
                         {"data": "entry_volume_id", "visible": false},
                         {"data": "volume_comicVineId", "width": "10%"},
-                        {"data": "volume_name", "width": "60%"},
-                        {"data": "entry_status", "width": "20%"},
+                        {"data": "volume_name", "width": "40%"},
+                        {"data": function(data) {
+                                if (data.entry_status === 0)
+                                {
+                                    return "<input class='checkBoxRead' type='checkbox'>";
+                                }
+                                else
+                                {
+                                    return "<input class='checkBoxRead' type='checkbox' checked='checked'>";
+                                }
+                            }, "width": "40%"},
                         {"defaultContent": "<button class='delBtn' style='width: 100%'>Remove</button>", "width": "10%"}
                     ]
                 });
@@ -340,7 +351,7 @@ function loadUserLibrary() {
     }); $('#batmanLibDiv').hide();}, 1500);
 }
 
-//onclick for delete from list
+//onClick for delete from list
 $('#myListTable').on( 'click', '.delBtn', function() {
 
     //navigate to this the row where this was clicked
@@ -369,6 +380,47 @@ $('#myListTable').on( 'click', '.delBtn', function() {
     });
 });
 
+//onClick for checkboxes
+$('#myListTable').on('click', '.checkBoxRead', function() {
+
+    //navigate to this the row where this was clicked
+    var table = $('#myListTable').DataTable();
+    var data = table.row($(this).parents('tr')).data();
+
+    //find the ID
+    var entry_user_id = data.entry_user_id;
+    var entry_volume_id = data.entry_volume_id;
+    var entry_status;
+
+    if (this.checked)
+    {
+        entry_status = 1;
+
+    }
+    else if (!this.checked)
+    {
+        entry_status = 0;
+    }
+
+    var update_entry = {"entry_user_id" : entry_user_id, "entry_volume_id" : entry_volume_id, "entry_status" : entry_status };
+
+    //POST to update a read status
+    $.ajax({
+        url: serverRoute + "updateStatus",
+        type: "POST",
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify(update_entry),
+
+        success: function () {
+            alert("Successfully changed status of entry!");
+            reloadTable();
+        }
+    });
+
+});
+
+//reload a datatable
 function reloadTable()
 {
     loadUserLibrary();
