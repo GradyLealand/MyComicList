@@ -1,0 +1,12 @@
+{
+  "name": "frontendserver",
+  "version": "1.0.0",
+  "description": "front end server for mycomicslist",
+  "main": "mycomicslist_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "node mycomicslist_server.js"
+  },
+  "author": "devin laltoo + grady williams",
+  "license": "ISC"
+}
